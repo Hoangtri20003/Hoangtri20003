@@ -57,20 +57,20 @@ I build products end to end — the touchscreen a guest taps, the hardware behin
 A shop runs one **booking kiosk** and a **photo kiosk per booth**. They never talk to each other directly: everything goes through the API. A guest books and pays at the booking kiosk, carries the printed QR ticket to a booth, scans it and shoots.
 
 ```mermaid
-%%{init: {'theme':'base','themeVariables':{'fontFamily':'ui-sans-serif, system-ui','fontSize':'15px','lineColor':'#8B949E','primaryTextColor':'#F0F6FC','clusterBkg':'#161B22','clusterBorder':'#30363D','edgeLabelBackground':'#0D1117'}}}%%
+%%{init: {'theme':'base','themeVariables':{'lineColor':'#8B949E','titleColor':'#F0F6FC','primaryTextColor':'#F0F6FC','clusterBkg':'#161B22','clusterBorder':'#30363D','edgeLabelBackground':'#0D1117'}}}%%
 flowchart TB
   subgraph Shop["🏪 In the shop"]
     direction LR
-    CASH["💵 Bill acceptor<br/><small>RS232</small>"] --> BK["🧾 Booking kiosk<br/><small>Electron · Next.js</small>"]
-    BK --> TP["🖨️ Thermal printer<br/><small>ESC/POS</small>"]
-    TP -. "QR ticket" .-> QR["🔍 QR scanner<br/><small>USB HID</small>"]
-    QR --> PK["📸 Photo kiosk<br/><small>Electron · Next.js</small>"]
-    CAM["📷 Canon camera<br/><small>EDSDK</small>"] --> PK
-    PK --> DNP["🖼️ DNP printer<br/><small>Hot Folder Print</small>"]
+    CASH["💵 Bill acceptor<br/>RS232"] --> BK["🧾 Booking kiosk<br/>Electron · Next.js"]
+    BK --> TP["🖨️ Thermal printer<br/>ESC/POS"]
+    TP -. "QR ticket" .-> QR["🔍 QR scanner<br/>USB HID"]
+    QR --> PK["📸 Photo kiosk<br/>Electron · Next.js"]
+    CAM["📷 Canon camera<br/>EDSDK"] --> PK
+    PK --> DNP["🖼️ DNP printer<br/>Hot Folder Print"]
   end
   subgraph Cloud["☁️ Cloud"]
     direction LR
-    ADMIN["🖥️ Admin web<br/><small>Next.js · Vercel</small>"] <--> API["⚙️ API<br/><small>NestJS · Railway</small>"]
+    ADMIN["🖥️ Admin web<br/>Next.js · Vercel"] <--> API["⚙️ API<br/>NestJS · Railway"]
     API --> DB[("🍃 MongoDB Atlas")]
     API --> R2[("🪣 Cloudflare R2")]
     API --> REDIS[("⚡ Redis")]
